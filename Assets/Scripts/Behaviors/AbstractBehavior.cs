@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class AbstractBehavior : MonoBehaviour {
 
 	public Buttons[] inputButtons;
+	public MonoBehaviour[] dissableScripts;
 
 	protected InputState inputState;
 	protected Rigidbody2D body2d;
@@ -15,13 +16,9 @@ public abstract class AbstractBehavior : MonoBehaviour {
 		collisionState = GetComponent<CollisionState> ();
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	protected virtual void ToggleScripts(bool value){
+		foreach(var script in dissableScripts){
+			script.enabled = value;
+		}
 	}
 }
